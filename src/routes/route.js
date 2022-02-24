@@ -39,7 +39,7 @@ router.post('/players/:playerName/bookings/:bookingId', function(req, res) {
                     return res.send('boooing id with this id is already present')
                 }
             }
-            players[i].bookings.push(booking)
+            players[i].bookings.push(players)
         }
 
     }
