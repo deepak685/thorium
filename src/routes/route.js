@@ -17,7 +17,7 @@ router.post('/players/:name', function(req, res) {
     res.send(players)
 });
 //assignmenr 2
-router.send('/players/:playerName/bookings/:bookingId', function(req, res) {
+router.post('/players/:playerName/bookings/:bookingId', function(req, res) {
     let name = req.params.playerName
         //  let bookingId=req.params.bookingId
     let isPlayerPresent = false
@@ -51,4 +51,4 @@ router.send('/players/:playerName/bookings/:bookingId', function(req, res) {
 
 
 module.exports = router
-    //dofferent api method are get,push etc
+    
