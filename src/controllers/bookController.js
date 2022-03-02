@@ -1,24 +1,41 @@
+const { constants } = require("buffer")
 const { count } = require("console")
 const authorModel = require("../models/authorModel")
-const bookModel= require("../models/bookModel")
+const bookModel = require("../models/bookModel")
+const publisherModel = require("../models/publisherModel")
 
-const createBook= async function (req, res) {
+const createBook = async function(req, res) {
+    //validate author
     let book = req.body
+    let author_id = book.author_id
+    let publisherId = book.publisher
+    if (!author_id) {
+        res.status(400).json({ msg: "authorId not present" })
+    }
+    const authorInfo = await authorModel.findById(author_id)
+    if (!authorInfo) {
+        res.status(400).json({ msg: "authorinfo not present" })
+    }
+
+    //validate publisher
+    let { Sname, headQuarter } = req.body
+    if (!publisherId) {
+        res.status(400).json({ msg: "publisherId not present" })
+    }
+    const publisherInfo = await publisherModel.findById(publisherId)
+    if (!publisherInfo) {
+        res.status(400).json({ msg: "authorinfo not present" })
+    }
+
     let bookCreated = await bookModel.create(book)
-    res.send({data: bookCreated})
+    return res.send({ data: bookCreated })
 }
 
-const getBooksData= async function (req, res) {
-    let books = await bookModel.find()
-    res.send({data: books})
+
+const getAllBooks = async function(req, res) {
+    let allbooks = await bookModel.find().populate('author publisher')
+    res.send({ data: "allbooks" })
 }
 
-const getBooksWithAuthorDetails = async function (req, res) {
-    let specificBook = await bookModel.find().populate('author_id')
-    res.send({data: specificBook})
-
-}
-
-module.exports.createBook= createBook
-module.exports.getBooksData= getBooksData
-module.exports.getBooksWithAuthorDetails = getBooksWithAuthorDetails
+module.exports.createBook = createBook
+module.exports.getAllBooks = getAllBooks
