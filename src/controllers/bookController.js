@@ -6,9 +6,9 @@ const publisherModel = require("../models/publisherModel")
 
 const createBook = async function(req, res) {
     //validate author
-    let book = req.body
-    let author_id = book.author_id
-    let publisherId = book.publisher
+     let book = req.body
+    let authorId = req.body.author
+    let publisherId = req.body.publisher
     if (!author_id) {
         res.status(400).json({ msg: "authorId not present" })
     }
@@ -18,7 +18,7 @@ const createBook = async function(req, res) {
     }
 
     //validate publisher
-    let { Sname, headQuarter } = req.body
+    
     if (!publisherId) {
         res.status(400).json({ msg: "publisherId not present" })
     }
@@ -34,7 +34,7 @@ const createBook = async function(req, res) {
 
 const getAllBooks = async function(req, res) {
     let allbooks = await bookModel.find().populate('author publisher')
-    res.send({ data: "allbooks" })
+    res.send({ data: allbooks })
 }
 
 module.exports.createBook = createBook
