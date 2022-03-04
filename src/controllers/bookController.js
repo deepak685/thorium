@@ -36,6 +36,29 @@ const getAllBooks = async function(req, res) {
     let allbooks = await bookModel.find().populate('author publisher')
     res.send({ data: allbooks })
 }
+const updatedBooks = async function(req, res) {
+
+    let hardCoverPublishers = await publisherModel.find({
+        name: { $in: ["Penguin", "HarperCollins"] },
+    });
+    let publisherIds = hardCoverPublishers.map((p) => p._id);
+
+    await bookModel.updateMany({ publisher: { $in: publisherIds } }, { isHardCover: true });
+
+
+    let highRatedAuthors = await authorModel.find({ rating: { $gt: 3.5 } });
+    let authorIds = highRatedAuthors.map((a) => a._id);
+
+    await bookModel.updateMany({ author: { $in: authorIds } }, { $inc: { price: 10 } });
+
+    let updatedBooks = await bookModel.find();
+    res.send({ updatedBookCollection: updatedBooks });
+};
+
+
+
+
 
 module.exports.createBook = createBook
 module.exports.getAllBooks = getAllBooks
+module.exports.updatedBooks = updatedBooks
