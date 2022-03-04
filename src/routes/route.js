@@ -13,6 +13,7 @@ router.post("/createAuthor", authorController.createAuthor)
 router.post("/createPubliser", publisherController.createPublisher)
 router.post("/createBook", bookController.createBook)
 router.get("/getAllBooks", bookController.getAllBooks)
+router.put("/books", bookController.updatedBooks);
 
 
 
