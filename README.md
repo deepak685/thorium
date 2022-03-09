@@ -39,4 +39,6 @@ If present, check that the token is valid.
 + Please note that you have to also write the logic for authorisation so that a logged in user can only modify or fetch their own data.
 
 ``` 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjI4ZmM4MGVhOWIxNWY4ZTY5Njg1OWMiLCJiYXRjaCI6InRob3JpdW0iLCJvcmdhbmlzYXRpb24iOiJGdW5jdGlvblVwIiwiaWF0IjoxNjQ2ODUzMjg0fQ.xK9QzRXJ1XKegMvyx-nK6FtWTiFqcdMjLrhYM1gjvXY
 
+6228fc80ea9b15f8e696859c
