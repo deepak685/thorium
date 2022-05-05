@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 
 //===============================================================================================================================
-let Blogs = async function(req, res) {
+let blogs = async function(req, res) {
 
     try {
         let data = req.body
@@ -153,7 +153,7 @@ const specificDeleting = async(req, res) => {
 
 
 module.exports.getBlogs = getBlogs
-module.exports.Blogs = Blogs;
+module.exports.Blogs = blogs;
 module.exports.deleting = deleting;
 module.exports.updating = updating;
 module.exports.specificDeleting = specificDeleting
